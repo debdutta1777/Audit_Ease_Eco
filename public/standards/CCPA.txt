@@ -1,0 +1,85 @@
+CALIFORNIA CONSUMER PRIVACY ACT (CCPA) - COMPLIANCE REQUIREMENTS
+
+SECTION 1798.100 - CONSUMER RIGHT TO KNOW
+
+(a) A consumer shall have the right to request that a business disclose:
+1. The categories of personal information it has collected about that consumer
+2. The categories of sources from which the personal information is collected
+3. The business or commercial purpose for collecting or selling personal information
+4. The categories of third parties with whom the business shares personal information
+5. The specific pieces of personal information it has collected about that consumer
+
+(b) A business that collects personal information shall, at or before the point of collection, inform consumers of the categories of personal information to be collected and the purposes for which they will be used.
+
+SECTION 1798.105 - CONSUMER RIGHT TO DELETE
+
+(a) A consumer shall have the right to request that a business delete any personal information about the consumer which the business has collected from the consumer.
+
+(b) A business that collects personal information shall disclose the consumer's right to request deletion.
+
+(c) A business that receives a verifiable consumer request shall delete the consumer's personal information and direct any service providers to delete the consumer's personal information.
+
+EXCEPTIONS TO DELETION:
+- Complete the transaction for which the personal information was collected
+- Detect security incidents
+- Debug to identify and repair errors
+- Exercise free speech or other legal rights
+- Comply with legal obligations
+- Use internally in a manner compatible with reasonable consumer expectations
+
+SECTION 1798.110 - RIGHT TO KNOW WHAT PERSONAL INFORMATION IS COLLECTED
+
+A business shall provide the following information upon receipt of a verifiable request:
+1. Categories of personal information collected in the preceding 12 months
+2. Categories of sources from which personal information is collected
+3. Business or commercial purpose for collecting or selling personal information
+4. Categories of third parties with whom personal information is shared
+5. Specific pieces of personal information collected about the consumer
+
+SECTION 1798.115 - RIGHT TO KNOW ABOUT SALE/DISCLOSURE OF PERSONAL INFORMATION
+
+A consumer shall have the right to request disclosure of:
+1. Categories of personal information collected
+2. Categories of personal information sold and categories of third parties to whom sold
+3. Categories of personal information disclosed for business purposes
+
+SECTION 1798.120 - RIGHT TO OPT-OUT OF SALE OF PERSONAL INFORMATION
+
+(a) A consumer shall have the right to direct a business that sells personal information to not sell that consumer's personal information ("right to opt-out").
+
+(b) A business shall not sell personal information of consumers if it has actual knowledge that the consumer is less than 16 years of age.
+
+(c) A business that sells personal information shall provide a clear and conspicuous link on its homepage titled "Do Not Sell My Personal Information" that enables a consumer to opt-out.
+
+SECTION 1798.125 - NON-DISCRIMINATION
+
+(a) A business shall not discriminate against a consumer because the consumer exercised any of the consumer's rights, including:
+1. Denying goods or services to the consumer
+2. Charging different prices or rates for goods or services
+3. Providing a different level or quality of goods or services
+4. Suggesting that the consumer will receive a different price or rate or different level or quality
+
+(b) Financial incentive practices are permitted if material terms are disclosed and consumer has opted-in.
+
+SECTION 1798.130 - BUSINESS RESPONSIBILITIES
+
+A business shall:
+1. Make available two or more designated methods for submitting requests
+2. Disclose and deliver required information within 45 days of receiving a verifiable request
+3. Not require consumer to create an account to make a request
+4. Use personal information received only for verification purposes
+5. Provide training and information to personnel handling consumer inquiries
+
+SECTION 1798.135 - HOMEPAGE REQUIREMENTS
+
+A business that is required to comply shall:
+1. Provide a "Do Not Sell My Personal Information" link on homepage
+2. Provide a description of consumer's rights
+3. Provide a designated method for submitting opt-out requests
+4. Respond to opt-out requests within 15 business days
+
+SECTION 1798.140 - DEFINITIONS
+
+"Personal Information" includes: identifiers, commercial information, biometric information, internet/electronic network activity, geolocation data, audio/visual information, professional/employment information, education information, and inferences drawn from the above.
+
+"Sale" means selling, renting, releasing, disclosing, disseminating, making available, or transferring a consumer's personal information for monetary or other valuable consideration.

@@ -1,0 +1,269 @@
+@import url("https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Source+Serif+Pro:wght@400;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@400;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Lora:wght@400;500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap");
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* AuditEase Design System - Modern Legal-Tech Aesthetic */
+
+@layer base {
+  :root {
+    /* Premium AuditEase Theme - Light Mode */
+    /* Primary brand - Deep navy with trust signals */
+    --background: 0 0% 100%;
+    --foreground: 222 47% 11%;
+
+    /* Cards and elevated surfaces */
+    --card: 210 20% 98%;
+    --card-foreground: 222 47% 11%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 222 47% 11%;
+
+    /* Primary - Sap Green */
+    --primary: 140 48% 55%;
+    --primary-foreground: 0 0% 100%;
+
+    /* Secondary - Slate tones */
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222 47% 11.2%;
+
+    /* Muted - Subtle grays */
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+
+    /* Accent - Bright Cyan */
+    --accent: 189 94% 43%;
+    /* Vibrant Cyan */
+    --accent-foreground: 0 0% 100%;
+
+    /* Status colors */
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 100%;
+
+    --success: 142 76% 36%;
+    --success-foreground: 0 0% 100%;
+
+    --warning: 38 92% 50%;
+    --warning-foreground: 0 0% 100%;
+
+    /* Risk level colors */
+    --risk-critical: 0 84% 60%;
+    --risk-high: 25 95% 53%;
+    --risk-medium: 38 92% 50%;
+    --risk-low: 142 76% 36%;
+
+    /* UI elements */
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 140 48% 55%;
+
+    --radius: 0.75rem;
+    /* Slightly more rounded for modern feel */
+
+    /* Sidebar - Glassmorphic Dark Sidebar usually */
+    --sidebar-background: 222 47% 11%;
+    --sidebar-foreground: 210 40% 98%;
+    --sidebar-primary: 140 48% 55%;
+    --sidebar-primary-foreground: 210 40% 98%;
+    --sidebar-accent: 140 20% 17%;
+    --sidebar-accent-foreground: 210 40% 98%;
+    --sidebar-border: 140 20% 17%;
+    --sidebar-ring: 140 48% 55%;
+
+    /* Gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(140 48% 45%), hsl(150 50% 30%));
+    --gradient-success: linear-gradient(135deg, hsl(142 76% 36%), hsl(142 70% 30%));
+    --gradient-glass: linear-gradient(180deg, rgba(255, 255, 255, 0.6) 0%, rgba(255, 255, 255, 0.3) 100%);
+
+    /* Chart Colors */
+    --chart-1: 140 48% 55%;
+    /* Sap Green */
+    --chart-2: 199 89% 48%;
+    /* Cyan */
+    --chart-3: 142 76% 36%;
+    /* Green */
+    --chart-4: 38 92% 50%;
+    /* Orange */
+    --chart-5: 0 84% 60%;
+    /* Red */
+
+    /* Typography */
+    --font-heading: 'Plus Jakarta Sans', sans-serif;
+    /* Modern feeling sans */
+    --font-body: 'Inter', sans-serif;
+  }
+
+  .dark {
+    /* Premium Dark Mode - Deep Green/Black Glassmorphism */
+    --background: 140 30% 6%;
+    /* Deep dark green */
+    --foreground: 210 40% 98%;
+
+    --card: 140 30% 8%;
+    /* Slightly lighter than bg */
+    --card-foreground: 210 40% 98%;
+
+    --popover: 140 30% 8%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 140 48% 55%;
+    /* Sap Green for dark mode pop */
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 140 20% 17%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 140 20% 17%;
+    --muted-foreground: 140 10% 65%;
+
+    --accent: 140 48% 55%;
+    --accent-foreground: 210 40% 98%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+
+    --success: 142 70% 45%;
+    --success-foreground: 0 0% 100%;
+
+    --warning: 38 92% 55%;
+    --warning-foreground: 0 0% 10%;
+
+    --risk-critical: 0 72% 51%;
+    --risk-high: 25 90% 58%;
+    --risk-medium: 38 92% 55%;
+    --risk-low: 142 70% 45%;
+
+    --border: 140 20% 17%;
+    --input: 140 20% 17%;
+    --ring: 140 48% 55%;
+
+    --sidebar-background: 140 30% 6%;
+    --sidebar-foreground: 210 40% 98%;
+    --sidebar-primary: 140 48% 55%;
+    --sidebar-primary-foreground: 210 40% 98%;
+    --sidebar-accent: 140 20% 17%;
+    --sidebar-accent-foreground: 210 40% 98%;
+    --sidebar-border: 140 20% 17%;
+    --sidebar-ring: 140 48% 55%;
+
+    --gradient-primary: linear-gradient(135deg, hsl(140 48% 45%), hsl(150 50% 30%));
+    --gradient-glass: linear-gradient(180deg, rgba(20, 40, 30, 0.7) 0%, rgba(10, 20, 15, 0.5) 100%);
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-muted/50;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-muted-foreground/20 rounded-full;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-muted-foreground/40;
+  }
+}
+
+@layer components {
+  .glass-card {
+    @apply bg-card/80 backdrop-blur-xl border border-border/50;
+    box-shadow: var(--shadow-lg);
+  }
+
+  .gradient-text {
+    @apply bg-clip-text text-transparent;
+    background-image: var(--gradient-primary);
+  }
+
+  .risk-badge-critical {
+    @apply bg-[hsl(var(--risk-critical))] text-white;
+  }
+
+  .risk-badge-high {
+    @apply bg-[hsl(var(--risk-high))] text-white;
+  }
+
+  .risk-badge-medium {
+    @apply bg-[hsl(var(--risk-medium))] text-black;
+  }
+
+  .risk-badge-low {
+    @apply bg-[hsl(var(--risk-low))] text-white;
+  }
+}
+
+@layer utilities {
+  .animate-fade-in {
+    animation: fadeIn 0.5s ease-out forwards;
+  }
+
+  .animate-slide-up {
+    animation: slideUp 0.5s ease-out forwards;
+  }
+
+  .animate-pulse-slow {
+    animation: pulse 3s ease-in-out infinite;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes slideUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes pulse {
+
+    0%,
+    100% {
+      opacity: 1;
+    }
+
+    50% {
+      opacity: 0.7;
+    }
+  }
+}

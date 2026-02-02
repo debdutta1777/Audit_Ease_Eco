@@ -1,0 +1,95 @@
+HIPAA COMPLIANCE REQUIREMENTS - SECURITY AND PRIVACY RULES
+
+ADMINISTRATIVE SAFEGUARDS (§164.308)
+
+(a)(1) SECURITY MANAGEMENT PROCESS
+- Conduct accurate and thorough risk analysis
+- Implement security measures to reduce risks and vulnerabilities
+- Apply appropriate sanctions against workforce members who violate policies
+- Implement procedures to regularly review records of system activity
+
+(a)(2) ASSIGNED SECURITY RESPONSIBILITY
+Identify the security official responsible for developing and implementing policies and procedures.
+
+(a)(3) WORKFORCE SECURITY
+- Implement procedures for authorization and/or supervision of workforce members
+- Implement procedures to determine appropriate access for workforce members
+- Implement procedures for terminating access when employment ends
+
+(a)(4) INFORMATION ACCESS MANAGEMENT
+- Implement policies and procedures for authorizing access to ePHI
+- Implement policies and procedures for granting access to workstations and systems
+- Implement policies and procedures for documenting access modifications
+
+(a)(5) SECURITY AWARENESS AND TRAINING
+- Implement security reminders
+- Implement procedures for guarding against malicious software
+- Implement procedures for monitoring log-in attempts
+- Implement procedures for creating, changing, and safeguarding passwords
+
+(a)(6) SECURITY INCIDENT PROCEDURES
+Implement policies and procedures to address security incidents, including identification, response, mitigation, and documentation.
+
+(a)(7) CONTINGENCY PLAN
+- Establish and implement data backup plan
+- Establish and implement disaster recovery plan
+- Establish and implement emergency mode operation plan
+- Implement procedures for periodic testing and revision
+- Assess criticality of applications and data
+
+(a)(8) EVALUATION
+Perform periodic technical and non-technical evaluation of security policies and procedures.
+
+PHYSICAL SAFEGUARDS (§164.310)
+
+(a)(1) FACILITY ACCESS CONTROLS
+- Implement policies and procedures to limit physical access
+- Implement procedures to safeguard facility and equipment from unauthorized access
+- Implement procedures to control and validate access based on role
+- Document repairs and modifications to physical security components
+
+(b)(1) WORKSTATION USE
+Implement policies and procedures for proper functions, manner, and physical attributes of workstations.
+
+(c)(1) DEVICE AND MEDIA CONTROLS
+- Implement policies for final disposal of ePHI and hardware
+- Implement procedures for removal of ePHI before reuse of media
+- Maintain record of movements of hardware and electronic media
+- Create retrievable exact copy of ePHI before movement of equipment
+
+TECHNICAL SAFEGUARDS (§164.312)
+
+(a)(1) ACCESS CONTROL
+- Assign unique user identification to each user
+- Establish emergency access procedure
+- Implement automatic logoff after period of inactivity
+- Implement mechanism to encrypt and decrypt ePHI
+
+(b) AUDIT CONTROLS
+Implement hardware, software, and procedural mechanisms to record and examine access and activity.
+
+(c)(1) INTEGRITY
+Implement policies and procedures to protect ePHI from improper alteration or destruction.
+
+(d) PERSON OR ENTITY AUTHENTICATION
+Implement procedures to verify identity of persons or entities seeking access to ePHI.
+
+(e)(1) TRANSMISSION SECURITY
+- Implement security measures to ensure ePHI is not improperly modified during transmission
+- Implement mechanism to encrypt ePHI during transmission when appropriate
+
+PRIVACY RULE REQUIREMENTS
+
+- Minimum Necessary Standard: Limit PHI use and disclosure to minimum necessary
+- Patient Rights: Access, amendment, accounting of disclosures, restrictions
+- Notice of Privacy Practices: Describe how PHI may be used and disclosed
+- Business Associate Agreements: Required for all business associates handling PHI
+- Authorization Requirements: Specific authorizations for uses beyond TPO
+- De-identification Standards: Safe harbor or expert determination methods
+
+BREACH NOTIFICATION RULE
+
+- Notify affected individuals within 60 days of breach discovery
+- Notify HHS for breaches affecting 500+ individuals within 60 days
+- Maintain breach log and report annually for breaches under 500 individuals
+- Notify media for breaches affecting 500+ individuals in a state/jurisdiction
