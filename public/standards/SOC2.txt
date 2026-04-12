@@ -1,0 +1,72 @@
+SOC 2 TYPE II - TRUST SERVICES CRITERIA COMPLIANCE REQUIREMENTS
+
+SECURITY (COMMON CRITERIA)
+CC1 - CONTROL ENVIRONMENT
+CC1.1: The entity demonstrates a commitment to integrity and ethical values.
+CC1.2: The board of directors demonstrates independence and exercises oversight.
+CC1.3: Management establishes structures, reporting lines, and authorities.
+CC1.4: The entity demonstrates commitment to attract, develop, and retain competent individuals.
+CC1.5: The entity holds individuals accountable for their internal control responsibilities.
+
+CC2 - COMMUNICATION AND INFORMATION
+CC2.1: The entity obtains or generates and uses relevant, quality information.
+CC2.2: The entity internally communicates information necessary for internal controls.
+CC2.3: The entity communicates with external parties regarding internal control matters.
+
+CC3 - RISK ASSESSMENT
+CC3.1: The entity specifies objectives with sufficient clarity to enable identification of risks.
+CC3.2: The entity identifies risks to the achievement of objectives and analyzes risks.
+CC3.3: The entity considers the potential for fraud in assessing risks.
+CC3.4: The entity identifies and assesses changes that could significantly impact internal controls.
+
+CC4 - MONITORING ACTIVITIES
+CC4.1: The entity selects, develops, and performs ongoing and/or separate evaluations.
+CC4.2: The entity evaluates and communicates internal control deficiencies in a timely manner.
+
+CC5 - CONTROL ACTIVITIES
+CC5.1: The entity selects and develops control activities that contribute to risk mitigation.
+CC5.2: The entity selects and develops general controls over technology.
+CC5.3: The entity deploys control activities through policies and procedures.
+
+CC6 - LOGICAL AND PHYSICAL ACCESS CONTROLS
+CC6.1: The entity implements logical access security software, infrastructure, and architectures.
+CC6.2: Prior to issuing system credentials, the entity registers and authorizes new users.
+CC6.3: The entity authorizes, modifies, or removes access to data and systems.
+CC6.4: The entity restricts physical access to facilities and protected information assets.
+CC6.5: The entity discontinues logical and physical protections when no longer needed.
+CC6.6: The entity implements logical access security measures against threats.
+CC6.7: The entity restricts the transmission of data to authorized users.
+CC6.8: The entity implements controls to prevent or detect unauthorized software.
+
+CC7 - SYSTEM OPERATIONS
+CC7.1: The entity uses detection and monitoring procedures to identify security events.
+CC7.2: The entity monitors system components for anomalies indicative of malicious acts.
+CC7.3: The entity evaluates security events to determine if they are security incidents.
+CC7.4: The entity responds to identified security incidents by executing response procedures.
+CC7.5: The entity identifies, develops, and implements remediation activities.
+
+CC8 - CHANGE MANAGEMENT
+CC8.1: The entity authorizes, designs, develops, configures, tests, and implements changes.
+
+CC9 - RISK MITIGATION
+CC9.1: The entity identifies, selects, and develops risk mitigation activities.
+CC9.2: The entity assesses and manages risks associated with vendors and partners.
+
+AVAILABILITY CRITERIA
+A1.1: The entity maintains, monitors, and evaluates current processing capacity.
+A1.2: The entity authorizes, designs, develops, implements, and maintains system recovery.
+A1.3: The entity tests recovery plan procedures supporting system recovery.
+
+CONFIDENTIALITY CRITERIA
+C1.1: The entity identifies and maintains confidential information.
+C1.2: The entity disposes of confidential information.
+
+PROCESSING INTEGRITY CRITERIA
+PI1.1: The entity obtains or generates, uses, and communicates quality information.
+PI1.2: The entity implements policies and procedures for system inputs.
+PI1.3: The entity implements policies and procedures for system processing.
+PI1.4: The entity implements policies and procedures for system outputs.
+PI1.5: The entity implements policies and procedures to store inputs, items in processing, and outputs.
+
+PRIVACY CRITERIA
+P1-P8: Notice, choice, collection, use, access, disclosure, quality, and monitoring requirements.
