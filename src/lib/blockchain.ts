@@ -12,8 +12,8 @@ const NETWORK_CONFIG = {
     },
 } as const;
 
-// Receiver wallet address — replace with your own
-const RECEIVER_WALLET = '0x0000000000000000000000000000000000000000';
+// Receiver wallet address — replace with your own production wallet
+const RECEIVER_WALLET = '0x742d35Cc6634C0532925a3b844Bc9e7595f2bD68';
 
 // Static ETH/USD rate for demo purposes
 // In production, integrate CoinGecko or Chainlink price feeds

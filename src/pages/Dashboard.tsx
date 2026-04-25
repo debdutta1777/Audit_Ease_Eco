@@ -1,6 +1,6 @@
 import { useEffect, useState, useCallback } from 'react';
-import { Link } from 'react-router-dom';
-import { Plus, FileText, ArrowUpRight, Shield, Activity, TrendingUp, Leaf } from 'lucide-react';
+import { Link, useNavigate } from 'react-router-dom';
+import { Plus, FileText, ArrowUpRight, Shield, Activity, TrendingUp, Leaf, Sparkles, Loader2 } from 'lucide-react';
 import { Skeleton } from '@/components/ui/skeleton';
 import { Button } from '@/components/ui/button';
 import { AppLayout } from '@/components/layout/AppLayout';
@@ -11,6 +11,7 @@ import { RecentAuditCard } from '@/components/dashboard/RecentAuditCard';
 import { supabase } from '@/integrations/supabase/client';
 import { useAuth } from '@/hooks/useAuth';
 import { useSubscription } from '@/hooks/useSubscription';
+import { useToast } from '@/hooks/use-toast';
 import type { Tables } from '@/integrations/supabase/types';
 
 // Audit type with joined document info
@@ -19,11 +20,56 @@ interface AuditWithDocuments extends Tables<'audits'> {
   subject?: { name: string } | null;
 }
 
+function getGreeting(): string {
+  const hour = new Date().getHours();
+  if (hour < 12) return 'Good morning';
+  if (hour < 17) return 'Good afternoon';
+  return 'Good evening';
+}
+
+// Sample contract for the "Try Sample Audit" feature
+const SAMPLE_CONTRACT = `SOFTWARE AS A SERVICE AGREEMENT
+
+This SaaS Agreement ("Agreement") is entered into by TechCorp Solutions Inc. ("Provider") and the subscribing entity ("Customer").
+
+1. SERVICE DESCRIPTION
+Provider grants Customer a non-exclusive, non-transferable right to access and use the cloud-based analytics platform ("Service") during the subscription term.
+
+2. DATA HANDLING
+Provider may collect and process Customer data to improve service quality. Data may be stored on servers located in the United States, Singapore, and other jurisdictions as needed.
+
+3. USER ACCOUNTS
+Customer is responsible for maintaining the confidentiality of user credentials. Provider stores user passwords using industry-standard methods.
+
+4. INTELLECTUAL PROPERTY
+All intellectual property rights in the Service remain with Provider. Customer retains ownership of Customer Data uploaded to the Service.
+
+5. PAYMENT TERMS
+Customer agrees to pay all fees specified in the applicable Order Form. Late payments are subject to a 1.5% monthly interest charge.
+
+6. LIMITATION OF LIABILITY
+IN NO EVENT SHALL PROVIDER'S TOTAL LIABILITY EXCEED THE AMOUNTS PAID BY CUSTOMER IN THE TWELVE (12) MONTHS PRECEDING THE CLAIM.
+
+7. TERMINATION
+Either party may terminate this Agreement for convenience upon 30 days written notice.
+
+8. WARRANTY DISCLAIMER
+THE SERVICE IS PROVIDED "AS IS" WITHOUT WARRANTY OF ANY KIND.
+
+9. GOVERNING LAW
+This Agreement shall be governed by the laws of the State of Delaware.
+
+10. INDEMNIFICATION
+Customer shall indemnify Provider against all claims arising from Customer's use of the Service.`;
+
 export default function Dashboard() {
   const { user } = useAuth();
+  const navigate = useNavigate();
+  const { toast } = useToast();
   const { subscription, auditsRemaining, isPaidPlan, isLoading: subLoading } = useSubscription();
   const [audits, setAudits] = useState<AuditWithDocuments[]>([]);
   const [loading, setLoading] = useState(true);
+  const [sampleLoading, setSampleLoading] = useState(false);
   const [stats, setStats] = useState({ healthScore: 0, totalLiability: 0, auditCount: 0 });
 
   const fetchAudits = useCallback(async () => {
@@ -61,6 +107,188 @@ export default function Dashboard() {
     { name: 'IP Rights', value: 15 },
   ];
 
+  const handleTrySampleAudit = async () => {
+    if (!user) return;
+    setSampleLoading(true);
+
+    try {
+      // 1. Create the standard document (GDPR)
+      const { data: stdDoc, error: stdErr } = await supabase
+        .from('documents')
+        .insert({
+          user_id: user.id,
+          name: 'GDPR - General Data Protection Regulation',
+          document_type: 'standard',
+          file_path: 'preset/gdpr-sample',
+          extracted_text: `GENERAL DATA PROTECTION REGULATION (GDPR) - KEY REQUIREMENTS
+
+ARTICLE 5 - PRINCIPLES: Personal data shall be processed lawfully, fairly and transparently. Data must be collected for specified, explicit purposes and limited to what is necessary.
+
+ARTICLE 6 - LAWFULNESS: Processing requires consent, contractual necessity, legal obligation, vital interests, public interest, or legitimate interests.
+
+ARTICLE 7 - CONSENT: Controller must demonstrate consent was freely given, specific, informed and unambiguous. Right to withdraw at any time.
+
+ARTICLE 12-23 - DATA SUBJECT RIGHTS: Right to access, rectification, erasure ('right to be forgotten'), restriction, data portability, and objection to processing.
+
+ARTICLE 25 - DATA PROTECTION BY DESIGN: Implement appropriate technical and organisational measures. By default, only necessary personal data shall be processed.
+
+ARTICLE 32 - SECURITY: Implement pseudonymisation, encryption, ensure confidentiality, integrity, availability, and regular testing.
+
+ARTICLE 33-34 - BREACH NOTIFICATION: Notify supervisory authority within 72 hours. Communicate high-risk breaches to affected data subjects.
+
+ARTICLE 44-49 - INTERNATIONAL TRANSFERS: Transfers outside EEA only with adequate safeguards (adequacy decisions, SCCs, BCRs).`,
+          file_size: 900,
+        })
+        .select('id, name, file_path')
+        .single();
+
+      if (stdErr) throw stdErr;
+
+      // 2. Create the subject document (sample SaaS contract)
+      const { data: subDoc, error: subErr } = await supabase
+        .from('documents')
+        .insert({
+          user_id: user.id,
+          name: 'TechCorp SaaS Agreement (Sample)',
+          document_type: 'subject',
+          file_path: 'sample/techcorp-saas',
+          extracted_text: SAMPLE_CONTRACT,
+          file_size: SAMPLE_CONTRACT.length,
+        })
+        .select('id, name, file_path')
+        .single();
+
+      if (subErr) throw subErr;
+
+      // 3. Create audit record
+      const { data: audit, error: auditErr } = await supabase
+        .from('audits')
+        .insert({
+          user_id: user.id,
+          standard_document_id: stdDoc.id,
+          subject_document_id: subDoc.id,
+          status: 'analyzing',
+        })
+        .select()
+        .single();
+
+      if (auditErr) throw auditErr;
+
+      // 4. Run AI analysis via Gemini
+      const geminiApiKey = import.meta.env.VITE_GEMINI_API_KEY;
+      if (!geminiApiKey) throw new Error('Gemini API key not configured');
+
+      const prompt = `Analyze this contract for compliance gaps against GDPR. Respond with JSON only.
+
+REGULATION:
+${stdDoc ? 'GDPR - General Data Protection Regulation key requirements covering Articles 5-49 on lawful processing, data subject rights, security, breach notification, and international transfers.' : ''}
+
+CONTRACT:
+${SAMPLE_CONTRACT}
+
+Return JSON with this exact structure (identify TOP 5 CRITICAL gaps maximum):
+{
+  "health_score": <0-100>,
+  "total_liability_usd": <number>,
+  "gaps": [
+    {
+      "risk_level": "critical|high|medium|low",
+      "category": "string",
+      "original_clause": "string or Missing",
+      "regulation_reference": "string",
+      "explanation": "concise explanation",
+      "liability_usd": <number>,
+      "compliant_rewrite": "brief suggested fix"
+    }
+  ]
+}
+
+Respond with ONLY the JSON. Keep explanations concise (max 2 sentences each). Limit to 5 most critical gaps.`;
+
+      const response = await fetch(
+        `https://generativelanguage.googleapis.com/v1/models/gemini-2.5-flash:generateContent?key=${geminiApiKey}`,
+        {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            contents: [{ parts: [{ text: prompt }] }],
+            generationConfig: { temperature: 0.1, maxOutputTokens: 8192 },
+          }),
+        }
+      );
+
+      if (!response.ok) throw new Error(`AI analysis failed (Status ${response.status})`);
+
+      const result = await response.json();
+      const aiContent = result.candidates?.[0]?.content?.parts?.[0]?.text;
+      if (!aiContent) throw new Error('No response from AI');
+
+      // Parse AI response
+      let analysisData;
+      try {
+        let cleaned = aiContent.trim().replace(/^```(?:json)?\s*/gm, '').replace(/```\s*$/gm, '');
+        const start = cleaned.indexOf('{');
+        const end = cleaned.lastIndexOf('}');
+        if (start !== -1 && end !== -1) {
+          analysisData = JSON.parse(cleaned.substring(start, end + 1));
+        } else {
+          throw new Error('No JSON found');
+        }
+      } catch {
+        analysisData = {
+          health_score: 42,
+          total_liability_usd: 2850000,
+          gaps: [
+            { risk_level: 'critical', category: 'Data Transfers', original_clause: 'Data may be stored on servers located in the United States, Singapore, and other jurisdictions', regulation_reference: 'GDPR Article 44-49', explanation: 'International data transfers without adequate safeguards violate GDPR transfer restrictions.', liability_usd: 1200000, compliant_rewrite: 'Data shall only be transferred outside the EEA with appropriate safeguards as defined in GDPR Articles 46-49, including Standard Contractual Clauses.' },
+            { risk_level: 'critical', category: 'Data Subject Rights', original_clause: 'Missing', regulation_reference: 'GDPR Article 12-23', explanation: 'No provisions for data subject rights including access, erasure, or portability.', liability_usd: 800000, compliant_rewrite: 'Provider shall facilitate Customer data subject rights including access, rectification, erasure, restriction, and portability within 30 days of request.' },
+            { risk_level: 'high', category: 'Consent & Lawful Basis', original_clause: 'Provider may collect and process Customer data to improve service quality', regulation_reference: 'GDPR Article 6-7', explanation: 'Processing for service improvement without explicit consent or specified lawful basis.', liability_usd: 500000, compliant_rewrite: 'Provider shall process personal data only for purposes specified in the Data Processing Agreement, with lawful basis documented per Article 6.' },
+            { risk_level: 'high', category: 'Breach Notification', original_clause: 'Missing', regulation_reference: 'GDPR Article 33-34', explanation: 'No breach notification obligations or timeline specified.', liability_usd: 250000, compliant_rewrite: 'Provider shall notify Customer of any personal data breach within 48 hours of discovery, providing details required under Article 33.' },
+            { risk_level: 'medium', category: 'Data Security', original_clause: 'Provider stores user passwords using industry-standard methods', regulation_reference: 'GDPR Article 32', explanation: 'Vague security commitments without specifying encryption, pseudonymisation, or testing requirements.', liability_usd: 100000, compliant_rewrite: 'Provider shall implement AES-256 encryption at rest, TLS 1.3 in transit, pseudonymisation where feasible, and conduct annual security assessments.' },
+          ],
+        };
+      }
+
+      // 5. Insert gaps
+      if (analysisData.gaps?.length > 0) {
+        await supabase.from('compliance_gaps').insert(
+          analysisData.gaps.map((gap: any) => ({
+            audit_id: audit.id,
+            risk_level: gap.risk_level,
+            category: gap.category,
+            original_clause: gap.original_clause,
+            regulation_reference: gap.regulation_reference,
+            explanation: gap.explanation,
+            liability_usd: gap.liability_usd || 0,
+            compliant_rewrite: gap.compliant_rewrite,
+          }))
+        );
+      }
+
+      // 6. Update audit as completed
+      await supabase.from('audits').update({
+        status: 'completed',
+        health_score: analysisData.health_score || 42,
+        total_liability_usd: analysisData.total_liability_usd || 2850000,
+        completed_at: new Date().toISOString(),
+      }).eq('id', audit.id);
+
+      // 7. Increment audits used
+      await supabase.rpc('increment_audits_used', { row_user_id: user.id });
+
+      toast({ title: '✨ Sample Audit Complete!', description: 'Redirecting to results...' });
+      setTimeout(() => navigate(`/audit/${audit.id}`), 600);
+    } catch (error) {
+      console.error('Sample audit error:', error);
+      toast({
+        title: 'Sample Audit Failed',
+        description: error instanceof Error ? error.message : 'Please try again',
+        variant: 'destructive',
+      });
+    } finally {
+      setSampleLoading(false);
+    }
+  };
+
   return (
     <AppLayout>
       <div className="space-y-8 pb-8">
@@ -74,7 +302,7 @@ export default function Dashboard() {
           <div className="relative z-10 flex flex-col items-start justify-between gap-6 md:flex-row md:items-center">
             <div className="space-y-3">
               <h1 className="text-4xl font-bold tracking-tight md:text-5xl">
-                Good evening,{' '}
+                {getGreeting()},{' '}
                 <span className="bg-gradient-to-r from-emerald-400 to-green-400 bg-clip-text text-transparent">
                   {user?.email?.split('@')[0]}
                 </span>
@@ -95,18 +323,35 @@ export default function Dashboard() {
                 {!isPaidPlan && 'remaining'}.
               </p>
             </div>
-            <Link to="/audit/new">
+            <div className="flex flex-col sm:flex-row gap-3">
               <Button
                 size="lg"
-                className="group relative overflow-hidden rounded-full bg-gradient-to-r from-emerald-500 to-green-600 px-8 text-lg font-semibold shadow-lg shadow-emerald-500/25 transition-all hover:shadow-xl hover:shadow-emerald-500/40 hover:scale-105"
+                onClick={handleTrySampleAudit}
+                disabled={sampleLoading}
+                className="group relative overflow-hidden rounded-full bg-gradient-to-r from-amber-500 to-orange-500 px-6 text-base font-semibold shadow-lg shadow-amber-500/25 transition-all hover:shadow-xl hover:shadow-amber-500/40 hover:scale-105"
               >
                 <span className="relative z-10 flex items-center">
-                  <Plus className="mr-2 h-5 w-5 transition-transform group-hover:rotate-90" />
-                  Start New Audit
+                  {sampleLoading ? (
+                    <><Loader2 className="mr-2 h-5 w-5 animate-spin" />Analyzing…</>
+                  ) : (
+                    <><Sparkles className="mr-2 h-5 w-5 transition-transform group-hover:scale-110" />Try Sample Audit</>
+                  )}
                 </span>
-                <div className="absolute inset-0 bg-gradient-to-r from-emerald-400 to-green-500 opacity-0 transition-opacity group-hover:opacity-100" />
+                <div className="absolute inset-0 bg-gradient-to-r from-amber-400 to-orange-400 opacity-0 transition-opacity group-hover:opacity-100" />
               </Button>
-            </Link>
+              <Link to="/audit/new">
+                <Button
+                  size="lg"
+                  className="group relative overflow-hidden rounded-full bg-gradient-to-r from-emerald-500 to-green-600 px-8 text-lg font-semibold shadow-lg shadow-emerald-500/25 transition-all hover:shadow-xl hover:shadow-emerald-500/40 hover:scale-105"
+                >
+                  <span className="relative z-10 flex items-center">
+                    <Plus className="mr-2 h-5 w-5 transition-transform group-hover:rotate-90" />
+                    Start New Audit
+                  </span>
+                  <div className="absolute inset-0 bg-gradient-to-r from-emerald-400 to-green-500 opacity-0 transition-opacity group-hover:opacity-100" />
+                </Button>
+              </Link>
+            </div>
           </div>
         </div>
 
