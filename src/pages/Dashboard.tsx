@@ -356,10 +356,121 @@ Respond with ONLY the JSON. Keep explanations concise (max 2 sentences each). Li
         </div>
 
         {loading ? (
-          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-            <Skeleton className="h-64 rounded-3xl" />
-            <Skeleton className="h-64 rounded-3xl" />
-            <Skeleton className="h-64 rounded-3xl" />
+          <div className="grid gap-6 lg:grid-cols-3">
+            {/* Skeletons matching the actual dashboard layout */}
+            
+            {/* Sustainability section skeleton */}
+            <div className="glass-card rounded-3xl p-6 lg:col-span-3 space-y-6">
+              <div className="flex items-center gap-3">
+                <Skeleton className="h-10 w-10 flex-shrink-0" />
+                <div className="space-y-2">
+                  <Skeleton className="h-6 w-48" />
+                  <Skeleton className="h-4 w-64" />
+                </div>
+              </div>
+              <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+                <div className="bg-card/40 rounded-xl p-5 lg:col-span-3 flex flex-col md:flex-row items-center gap-6">
+                  <Skeleton className="h-20 w-20 md:h-24 md:w-24 rounded-full flex-shrink-0" />
+                  <div className="flex-1 w-full space-y-4">
+                    <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
+                      <div className="space-y-2">
+                        <Skeleton className="h-6 w-40" />
+                        <Skeleton className="h-4 w-56" />
+                      </div>
+                      <Skeleton className="h-10 w-full md:w-32 rounded-lg" />
+                    </div>
+                    <div className="space-y-2">
+                      <div className="flex justify-between">
+                        <Skeleton className="h-4 w-32" />
+                        <Skeleton className="h-4 w-12" />
+                      </div>
+                      <Skeleton className="h-2.5 w-full rounded-full" />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Health Score skeleton */}
+            <div className="glass-card rounded-3xl p-6 lg:col-span-1">
+              <div className="flex items-center justify-between mb-6">
+                <div className="flex items-center gap-2">
+                  <Skeleton className="h-9 w-9 rounded-lg" />
+                  <Skeleton className="h-5 w-24" />
+                </div>
+                <Skeleton className="h-6 w-24 rounded-full" />
+              </div>
+              <div className="flex flex-col items-center justify-center py-4">
+                <Skeleton className="h-40 w-40 rounded-full mb-4" />
+                <Skeleton className="h-4 w-32" />
+              </div>
+            </div>
+
+            {/* Liability skeleton */}
+            <div className="glass-card rounded-3xl p-6 lg:col-span-1">
+              <div className="flex items-center gap-2 mb-6">
+                <Skeleton className="h-9 w-9 rounded-lg" />
+                <Skeleton className="h-5 w-32" />
+              </div>
+              <div className="flex flex-col justify-center space-y-4 mt-8">
+                <Skeleton className="h-10 w-32" />
+                <Skeleton className="h-4 w-40" />
+                <div className="mt-8 pt-4 border-t border-border space-y-3">
+                  <div className="flex justify-between">
+                    <Skeleton className="h-4 w-32" />
+                    <Skeleton className="h-4 w-16" />
+                  </div>
+                  <div className="flex justify-between">
+                    <Skeleton className="h-4 w-24" />
+                    <Skeleton className="h-4 w-20" />
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Risk Categories skeleton */}
+            <div className="glass-card rounded-3xl p-6 lg:col-span-1">
+              <div className="flex items-center gap-2 mb-4">
+                <Skeleton className="h-9 w-9 rounded-lg" />
+                <Skeleton className="h-5 w-32" />
+              </div>
+              <div className="flex items-center justify-center py-4">
+                <Skeleton className="h-[200px] w-[200px] rounded-full" />
+              </div>
+              <div className="flex justify-center gap-3 mt-2">
+                <Skeleton className="h-4 w-16" />
+                <Skeleton className="h-4 w-16" />
+                <Skeleton className="h-4 w-16" />
+              </div>
+            </div>
+
+            {/* Recent Activity Skeletons */}
+            <div className="lg:col-span-3 mt-2">
+              <div className="flex items-center justify-between mb-6">
+                <Skeleton className="h-7 w-32" />
+                <Skeleton className="h-5 w-32" />
+              </div>
+              <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+                {[1, 2, 3].map((i) => (
+                  <div key={i} className="glass-card rounded-xl p-5 space-y-4">
+                    <div className="flex justify-between items-start">
+                      <div className="flex gap-3">
+                        <Skeleton className="h-10 w-10 rounded-lg flex-shrink-0" />
+                        <div className="space-y-2">
+                          <Skeleton className="h-5 w-32" />
+                          <Skeleton className="h-4 w-48" />
+                        </div>
+                      </div>
+                      <Skeleton className="h-6 w-20 rounded-full" />
+                    </div>
+                    <div className="flex justify-between items-center pt-2">
+                      <Skeleton className="h-4 w-24" />
+                      <Skeleton className="h-4 w-20" />
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
           </div>
         ) : audits.length === 0 ? (
           <div className="flex min-h-[400px] flex-col items-center justify-center rounded-3xl border border-dashed border-muted-foreground/25 bg-card/50 p-12 text-center">

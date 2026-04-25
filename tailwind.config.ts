@@ -166,6 +166,11 @@ export default {
   					opacity: '1',
   					transform: 'scale(1)'
   				}
+  			},
+  			shimmer: {
+  				'100%': {
+  					transform: 'translateX(100%)'
+  				}
   			}
   		},
   		animation: {
@@ -173,7 +178,8 @@ export default {
   			'accordion-up': 'accordion-up 0.2s ease-out',
   			'fade-in': 'fade-in 0.5s ease-out forwards',
   			'slide-up': 'slide-up 0.5s ease-out forwards',
-  			'scale-in': 'scale-in 0.3s ease-out forwards'
+  			'scale-in': 'scale-in 0.3s ease-out forwards',
+  			shimmer: 'shimmer 1.5s infinite linear'
   		},
   		boxShadow: {
   			glow: '0 0 20px -5px hsl(var(--primary) / 0.3)',
