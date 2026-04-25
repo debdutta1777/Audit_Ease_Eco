@@ -17,7 +17,51 @@
   </head>
 
   <body>
-    <div id="root"></div>
+    <div id="root">
+      <!-- Instant pre-render skeleton — replaced when React mounts -->
+      <style>
+        body { margin: 0; background: hsl(160, 30%, 6%); }
+        .preload {
+          min-height: 100vh;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          gap: 1rem;
+          font-family: system-ui, -apple-system, sans-serif;
+        }
+        .preload-logo {
+          display: flex;
+          align-items: center;
+          gap: 0.5rem;
+        }
+        .preload-icon {
+          width: 2.25rem; height: 2.25rem;
+          border-radius: 0.5rem;
+          background: linear-gradient(135deg, #10b981, #14b8a6);
+          display: flex; align-items: center; justify-content: center;
+        }
+        .preload-icon svg { width: 1.25rem; height: 1.25rem; color: white; }
+        .preload-name { font-size: 1.25rem; font-weight: 700; color: white; }
+        .preload-spinner {
+          width: 2rem; height: 2rem;
+          border: 3px solid rgba(16,185,129,0.2);
+          border-top-color: #10b981;
+          border-radius: 50%;
+          animation: spin 0.8s linear infinite;
+        }
+        @keyframes spin { to { transform: rotate(360deg); } }
+      </style>
+      <div class="preload">
+        <div class="preload-logo">
+          <div class="preload-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          </div>
+          <span class="preload-name">AuditEase</span>
+        </div>
+        <div class="preload-spinner"></div>
+      </div>
+    </div>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>
