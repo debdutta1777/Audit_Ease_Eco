@@ -92,7 +92,12 @@ export default {
   				'sans-serif'
   			],
   			display: [
-  				'Inter',
+  				'Plus Jakarta Sans',
+  				'system-ui',
+  				'sans-serif'
+  			],
+  			heading: [
+  				'Plus Jakarta Sans',
   				'system-ui',
   				'sans-serif'
   			],
