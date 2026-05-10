@@ -4,7 +4,6 @@ AI-powered contract analysis and compliance management platform.
 
 ## Features
 
-
 - AI-powered contract analysis in under 60 seconds
 - 50+ regulatory frameworks supported
 - Automated liability calculations
