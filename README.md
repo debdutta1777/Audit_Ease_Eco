@@ -9,7 +9,6 @@ AI-powered contract analysis and compliance management platform.
 - Automated liability calculations
 - One-click compliant rewrites
 
-
 ## Getting Started
 
 ### Prerequisites
